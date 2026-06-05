@@ -5,3 +5,4 @@ dist-server/
 coverage/
 *.log
 results-*.bak.csv
+results.csv
