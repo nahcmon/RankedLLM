@@ -11,10 +11,24 @@ describe("aggregateRunSummaries", () => {
 
     expect(summaries).toHaveLength(1);
     expect(summaries[0]).toMatchObject({
-      totalPrompts: 2,
+      totalPrompts: 1,
       correctPrompts: 1,
-      accuracy: 50,
-      averageLatencyMs: 200,
+      accuracy: 100,
+      averageLatencyMs: 100,
+      errors: 1
+    });
+  });
+
+  it("keeps all-error groups visible without using them for accuracy or latency", () => {
+    const summaries = aggregateRunSummaries([
+      rowFactory({ prompt_id: "p1", score: "0", latency_ms: "1200", error: "provider unavailable" })
+    ]);
+
+    expect(summaries[0]).toMatchObject({
+      totalPrompts: 0,
+      correctPrompts: 0,
+      accuracy: 0,
+      averageLatencyMs: 0,
       errors: 1
     });
   });

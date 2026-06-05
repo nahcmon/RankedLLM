@@ -14,7 +14,8 @@ export function aggregateRunSummaries(rows: PromptResultRow[]): RunSummary[] {
     const existing = summaries.get(key);
     const score = Number(row.score || 0);
     const latency = Number(row.latency_ms || 0);
-    const hasLatency = Number.isFinite(latency) && latency > 0;
+    const hasError = Boolean(row.error);
+    const hasLatency = !hasError && Number.isFinite(latency) && latency > 0;
 
     const next = existing ?? {
       runId: row.run_id,
@@ -33,9 +34,11 @@ export function aggregateRunSummaries(rows: PromptResultRow[]): RunSummary[] {
       latencyCount: 0
     };
 
-    next.totalPrompts += 1;
-    next.correctPrompts += score >= 1 ? 1 : 0;
-    next.errors += row.error ? 1 : 0;
+    next.errors += hasError ? 1 : 0;
+    if (!hasError) {
+      next.totalPrompts += 1;
+      next.correctPrompts += score >= 1 ? 1 : 0;
+    }
     if (hasLatency) {
       next.latencyTotal += latency;
       next.latencyCount += 1;

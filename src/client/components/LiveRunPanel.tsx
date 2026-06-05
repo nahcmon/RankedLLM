@@ -12,8 +12,9 @@ export function LiveRunPanel({ progress, recentResults }: LiveRunPanelProps) {
   const percent = progress && progress.totalPrompts > 0
     ? Math.round((progress.completedPrompts / progress.totalPrompts) * 100)
     : 0;
-  const accuracy = progress && progress.completedPrompts > 0
-    ? Math.round((progress.correctPrompts / progress.completedPrompts) * 100)
+  const scoredPrompts = progress ? Math.max(0, progress.completedPrompts - progress.errors) : 0;
+  const accuracy = progress && scoredPrompts > 0
+    ? Math.round((progress.correctPrompts / scoredPrompts) * 100)
     : 0;
   const tone = progress?.status === "completed" ? "success" : progress?.status === "running" ? "running" : "idle";
 

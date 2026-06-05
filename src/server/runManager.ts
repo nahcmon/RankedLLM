@@ -157,7 +157,7 @@ export class RunManager {
         await this.csvStore.appendRow(row);
         activeRun.rows.push(row);
         activeRun.progress.completedPrompts += 1;
-        activeRun.progress.correctPrompts += score >= 1 ? 1 : 0;
+        activeRun.progress.correctPrompts += !error && score >= 1 ? 1 : 0;
         activeRun.progress.errors += error ? 1 : 0;
         activeRun.progress.lastResult = row;
         activeRun.progress.averageLatencyMs = averageLatency(activeRun.rows);
@@ -183,7 +183,10 @@ export class RunManager {
 }
 
 function averageLatency(rows: PromptResultRow[]): number {
-  const latencies = rows.map((row) => Number(row.latency_ms)).filter((latency) => Number.isFinite(latency) && latency > 0);
+  const latencies = rows
+    .filter((row) => !row.error)
+    .map((row) => Number(row.latency_ms))
+    .filter((latency) => Number.isFinite(latency) && latency > 0);
   if (latencies.length === 0) {
     return 0;
   }
