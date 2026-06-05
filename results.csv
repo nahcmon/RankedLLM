@@ -61462,3 +61462,843 @@ I. The order of a product always equals the product of orders
 J. Every subgroup has index one
 
 Answer with only the option letter.",A. Every subgroup is normal | B. Every element has prime order | C. The order of any subgroup divides the order of the group | D. Every group of even order is cyclic | E. A subgroup and its quotient have the same order | F. The center has the same order as the group | G. Every homomorphism is injective | H. Every finite group is abelian | I. The order of a product always equals the product of orders | J. Every subgroup has index one,C,C,C,true,1,5736,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,smoke,Quick smoke tests,smoke,smoke_arithmetic_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] What is 2 + 2?
+
+Return only the final numeric answer.",,4,4,4,true,1,5615,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,smoke,Quick smoke tests,smoke,smoke_format_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Reply with exactly the word READY in uppercase.
+
+Return only the exact answer string.",,READY,READY,ready,true,1,1483,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,smoke,Quick smoke tests,smoke,smoke_fact_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which planet is known as the Red Planet?
+
+Options:
+A. Venus
+B. Mars
+C. Jupiter
+D. Mercury
+
+Answer with only the option letter.",A. Venus | B. Mars | C. Jupiter | D. Mercury,B,B,B,true,1,1368,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,smoke,Quick smoke tests,smoke,smoke_reasoning_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A cup is on a table. Sam moves the cup into a cabinet and closes the door. Where is the cup now?
+
+Options:
+A. On the table
+B. In the cabinet
+C. Under the table
+D. Outside
+
+Answer with only the option letter.",A. On the table | B. In the cabinet | C. Under the table | D. Outside,B,B,B,true,1,2164,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,smoke,Quick smoke tests,smoke,smoke_counting_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] There are 3 blue tiles and 5 red tiles. How many tiles are there total?
+
+Return only the final numeric answer.",,8,8,8,true,1,847,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,smoke,Quick smoke tests,smoke,smoke_instruction_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Choose the letter that comes immediately after C in the English alphabet.
+
+Options:
+A. B
+B. D
+C. E
+D. F
+
+Answer with only the option letter.",A. B | B. D | C. E | D. F,B,B,B,true,1,1556,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,smoke,Quick smoke tests,smoke,smoke_logic_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] All squares are rectangles. This shape is a square. Which statement must be true?
+
+Options:
+A. The shape is a rectangle
+B. The shape is a circle
+C. The shape is not a rectangle
+D. No statement follows
+
+Answer with only the option letter.",A. The shape is a rectangle | B. The shape is a circle | C. The shape is not a rectangle | D. No statement follows,A,A,A,true,1,2528,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,smoke,Quick smoke tests,smoke,smoke_sort_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Sort these numbers from smallest to largest and output only the comma-separated list: 7, 2, 5
+
+Return only the exact answer string.",,"2, 5, 7","2, 5, 7","2, 5, 7",true,1,5811,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_sample,MMLU-inspired local sample,knowledge:biology,mmlu_local_biology_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which cellular structure is primarily responsible for producing ATP through aerobic respiration?
+
+Options:
+A. Ribosome
+B. Mitochondrion
+C. Golgi apparatus
+D. Nucleus
+
+Answer with only the option letter.",A. Ribosome | B. Mitochondrion | C. Golgi apparatus | D. Nucleus,B,B,B,true,1,1966,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_sample,MMLU-inspired local sample,knowledge:history,mmlu_local_history_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] The Magna Carta was first agreed to in which century?
+
+Options:
+A. 11th century
+B. 12th century
+C. 13th century
+D. 15th century
+
+Answer with only the option letter.",A. 11th century | B. 12th century | C. 13th century | D. 15th century,C,C,C,true,1,3252,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_sample,MMLU-inspired local sample,knowledge:mathematics,mmlu_local_math_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] If f(x) = 2x + 3, what is f(4)?
+
+Options:
+A. 7
+B. 8
+C. 11
+D. 14
+
+Answer with only the option letter.",A. 7 | B. 8 | C. 11 | D. 14,C,C,C,true,1,2102,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_sample,MMLU-inspired local sample,knowledge:law,mmlu_local_law_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] In a legal context, which term usually refers to a previous court decision used as authority in later cases?
+
+Options:
+A. Affidavit
+B. Precedent
+C. Indictment
+D. Injunction
+
+Answer with only the option letter.",A. Affidavit | B. Precedent | C. Indictment | D. Injunction,B,B,B,true,1,2279,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_sample,MMLU-inspired local sample,knowledge:physics,mmlu_local_physics_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] For an object moving at constant velocity in a straight line, what is its acceleration?
+
+Options:
+A. Zero
+B. Equal to its speed
+C. Increasing linearly
+D. Equal to its mass
+
+Answer with only the option letter.",A. Zero | B. Equal to its speed | C. Increasing linearly | D. Equal to its mass,A,A,A,true,1,2090,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,arc_sample,ARC-inspired local sample,science:earth,arc_local_science_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which process turns liquid water into water vapor?
+
+Options:
+A. Condensation
+B. Evaporation
+C. Freezing
+D. Deposition
+
+Answer with only the option letter.",A. Condensation | B. Evaporation | C. Freezing | D. Deposition,B,B,B,true,1,1422,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,arc_sample,ARC-inspired local sample,science:life,arc_local_science_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A plant kept in a dark closet for many days is most directly deprived of what needed input for photosynthesis?
+
+Options:
+A. Light
+B. Soil minerals
+C. Gravity
+D. Wind
+
+Answer with only the option letter.",A. Light | B. Soil minerals | C. Gravity | D. Wind,A,A,A,true,1,2852,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,arc_sample,ARC-inspired local sample,science:physical,arc_local_science_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which material is usually the best electrical conductor?
+
+Options:
+A. Rubber
+B. Glass
+C. Copper
+D. Wood
+
+Answer with only the option letter.",A. Rubber | B. Glass | C. Copper | D. Wood,C,C,C,true,1,1839,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,arc_sample,ARC-inspired local sample,science:physical,arc_local_science_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A student pushes a box across a rough floor. Which force most directly opposes the motion?
+
+Options:
+A. Friction
+B. Magnetism
+C. Buoyancy
+D. Photosynthesis
+
+Answer with only the option letter.",A. Friction | B. Magnetism | C. Buoyancy | D. Photosynthesis,A,A,A,true,1,2314,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,arc_sample,ARC-inspired local sample,science:space,arc_local_science_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Earth has seasons mainly because its axis is tilted as it orbits which object?
+
+Options:
+A. The Moon
+B. The Sun
+C. Mars
+D. The North Star
+
+Answer with only the option letter.",A. The Moon | B. The Sun | C. Mars | D. The North Star,B,B,B,true,1,1562,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,truthfulqa_sample,TruthfulQA-inspired local sample,truthfulness:health,truthfulqa_local_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which statement about antibiotics is correct?
+
+Options:
+A. Antibiotics treat bacterial infections, not ordinary viral colds
+B. Antibiotics cure every illness instantly
+C. Antibiotics work better when shared with friends
+D. Antibiotics replace all vaccines
+
+Answer with only the option letter.","A. Antibiotics treat bacterial infections, not ordinary viral colds | B. Antibiotics cure every illness instantly | C. Antibiotics work better when shared with friends | D. Antibiotics replace all vaccines",A,A,A,true,1,2148,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,truthfulqa_sample,TruthfulQA-inspired local sample,truthfulness:myths,truthfulqa_local_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] What happens if you swallow chewing gum?
+
+Options:
+A. It usually passes through the digestive system
+B. It stays in the stomach for seven years
+C. It turns into plastic inside the body
+D. It makes the stomach magnetic
+
+Answer with only the option letter.",A. It usually passes through the digestive system | B. It stays in the stomach for seven years | C. It turns into plastic inside the body | D. It makes the stomach magnetic,A,A,A,true,1,2388,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,truthfulqa_sample,TruthfulQA-inspired local sample,truthfulness:science,truthfulqa_local_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which claim about the Moon is accurate?
+
+Options:
+A. The Moon reflects sunlight
+B. The Moon creates its own visible sunlight
+C. The Moon is made of cheese
+D. The Moon disappears during the day
+
+Answer with only the option letter.",A. The Moon reflects sunlight | B. The Moon creates its own visible sunlight | C. The Moon is made of cheese | D. The Moon disappears during the day,A,A,A,true,1,2307,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,truthfulqa_sample,TruthfulQA-inspired local sample,truthfulness:finance,truthfulqa_local_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which statement about guaranteed investment returns is safest?
+
+Options:
+A. Claims of high guaranteed returns should be treated skeptically
+B. All high-return investments are risk-free
+C. A secret formula can remove all market risk
+D. Risk warnings only apply to beginners
+
+Answer with only the option letter.",A. Claims of high guaranteed returns should be treated skeptically | B. All high-return investments are risk-free | C. A secret formula can remove all market risk | D. Risk warnings only apply to beginners,A,A,A,true,1,2987,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,truthfulqa_sample,TruthfulQA-inspired local sample,truthfulness:law,truthfulqa_local_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which statement about legal advice is generally true?
+
+Options:
+A. A qualified lawyer can give advice for a specific legal situation
+B. Any internet comment is automatically binding legal advice
+C. Laws are identical in every country
+D. Signing a contract never has consequences
+
+Answer with only the option letter.",A. A qualified lawyer can give advice for a specific legal situation | B. Any internet comment is automatically binding legal advice | C. Laws are identical in every country | D. Signing a contract never has consequences,A,A,A,true,1,2406,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,winogrande_sample,WinoGrande-inspired local sample,commonsense:coreference,winogrande_local_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] The trophy would not fit in the suitcase because it was too large. What was too large?
+
+Options:
+A. The trophy
+B. The suitcase
+
+Answer with only the option letter.",A. The trophy | B. The suitcase,A,A,A,true,1,4039,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,winogrande_sample,WinoGrande-inspired local sample,commonsense:coreference,winogrande_local_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] The jacket did not fit over the sweater because it was too thick. What was too thick?
+
+Options:
+A. The jacket
+B. The sweater
+
+Answer with only the option letter.",A. The jacket | B. The sweater,B,B,B,true,1,3590,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,winogrande_sample,WinoGrande-inspired local sample,commonsense:coreference,winogrande_local_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] The city council denied the parade permit because they feared heavy traffic. Who feared heavy traffic?
+
+Options:
+A. The city council
+B. The parade
+
+Answer with only the option letter.",A. The city council | B. The parade,A,A,A,true,1,1688,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,winogrande_sample,WinoGrande-inspired local sample,commonsense:coreference,winogrande_local_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] The pitcher poured water into the glass until it was full. What was full?
+
+Options:
+A. The pitcher
+B. The glass
+
+Answer with only the option letter.",A. The pitcher | B. The glass,B,B,B,true,1,2210,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,winogrande_sample,WinoGrande-inspired local sample,commonsense:coreference,winogrande_local_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] The delivery driver handed the package to the customer because they had ordered it. Who had ordered it?
+
+Options:
+A. The delivery driver
+B. The customer
+
+Answer with only the option letter.",A. The delivery driver | B. The customer,B,B,B,true,1,2232,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,hellaswag_sample,HellaSwag-inspired local sample,commonsense:activity,hellaswag_local_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A person cracks two eggs into a bowl, adds milk, and whisks the mixture. What is the most likely next step?
+
+Options:
+A. Pour the mixture into a pan to cook it
+B. Put the bowl in a toolbox
+C. Paint the eggshells blue
+D. Use the mixture to wash a window
+
+Answer with only the option letter.",A. Pour the mixture into a pan to cook it | B. Put the bowl in a toolbox | C. Paint the eggshells blue | D. Use the mixture to wash a window,A,A,A,true,1,2486,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,hellaswag_sample,HellaSwag-inspired local sample,commonsense:activity,hellaswag_local_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A runner ties their shoes, stretches their legs, and steps up to the starting line. What is the most likely next action?
+
+Options:
+A. They begin running when the race starts
+B. They place the shoes in an oven
+C. They fill a bathtub with paper
+D. They close a book on the floor
+
+Answer with only the option letter.",A. They begin running when the race starts | B. They place the shoes in an oven | C. They fill a bathtub with paper | D. They close a book on the floor,A,A,A,true,1,2616,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,hellaswag_sample,HellaSwag-inspired local sample,commonsense:household,hellaswag_local_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Someone notices crumbs on the kitchen floor and takes a broom from the closet. What will they probably do next?
+
+Options:
+A. Sweep the crumbs into a pile
+B. Use the broom as a soup spoon
+C. Mail the broom in an envelope
+D. Turn off a television with the bristles
+
+Answer with only the option letter.",A. Sweep the crumbs into a pile | B. Use the broom as a soup spoon | C. Mail the broom in an envelope | D. Turn off a television with the bristles,A,A,A,true,1,2172,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,hellaswag_sample,HellaSwag-inspired local sample,commonsense:tools,hellaswag_local_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A mechanic raises a car with a lift and removes a flat tire. What is the most plausible next step?
+
+Options:
+A. Install a replacement tire
+B. Bake the tire into bread
+C. Measure the tire with a thermometer only
+D. Put the car inside a desk drawer
+
+Answer with only the option letter.",A. Install a replacement tire | B. Bake the tire into bread | C. Measure the tire with a thermometer only | D. Put the car inside a desk drawer,A,A,A,true,1,2029,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,hellaswag_sample,HellaSwag-inspired local sample,commonsense:school,hellaswag_local_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A teacher writes a math problem on the board and asks students to solve it. What is the most likely response from the students?
+
+Options:
+A. They work out the answer
+B. They water the board like a plant
+C. They inflate the problem with air
+D. They fold the classroom into a box
+
+Answer with only the option letter.",A. They work out the answer | B. They water the board like a plant | C. They inflate the problem with air | D. They fold the classroom into a box,A,A,A,true,1,2402,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,gsm8k_sample,GSM8K-inspired local sample,math:arithmetic,gsm8k_local_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Mia has 6 apples. She buys 4 more and gives 3 to a friend. How many apples does Mia have left?
+
+Return only the final numeric answer.",,7,7,7,true,1,1388,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,gsm8k_sample,GSM8K-inspired local sample,math:arithmetic,gsm8k_local_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A box holds 8 pencils. There are 5 full boxes. How many pencils are there in total?
+
+Return only the final numeric answer.",,40,40,40,true,1,1191,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,gsm8k_sample,GSM8K-inspired local sample,math:money,gsm8k_local_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A notebook costs 3 dollars. Leo buys 4 notebooks and pays with a 20 dollar bill. How many dollars in change should he get?
+
+Return only the final numeric answer.",,8,8,8,true,1,1534,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,gsm8k_sample,GSM8K-inspired local sample,math:time,gsm8k_local_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A movie starts at 2:00 and lasts 90 minutes. At what hour does it end? Answer with the hour number only using 12-hour time.
+
+Return only the final numeric answer.",,3.5,3,3,false,0,3322,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,gsm8k_sample,GSM8K-inspired local sample,math:arithmetic,gsm8k_local_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] There are 12 cookies. Four children share them equally. How many cookies does each child get?
+
+Return only the final numeric answer.",,3,3,3,true,1,1056,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,boolq_sample,BoolQ-inspired local sample,reading:yes_no,boolq_local_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Passage: The Pacific Ocean is the largest and deepest of Earth's oceanic divisions. It extends from the Arctic Ocean in the north to the Southern Ocean in the south.
+Question: Is the Pacific Ocean the largest ocean on Earth?
+
+Options:
+A. Yes
+B. No
+
+Answer with only the option letter.",A. Yes | B. No,A,A,A,true,1,1725,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,boolq_sample,BoolQ-inspired local sample,reading:yes_no,boolq_local_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Passage: Photosynthesis uses light energy to convert carbon dioxide and water into sugars. Oxygen is released as a byproduct.
+Question: Does photosynthesis consume oxygen as its main input?
+
+Options:
+A. Yes
+B. No
+
+Answer with only the option letter.",A. Yes | B. No,B,B,B,true,1,2706,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,boolq_sample,BoolQ-inspired local sample,reading:yes_no,boolq_local_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Passage: The violin is a string instrument that is usually played with a bow. It typically has four strings tuned in perfect fifths.
+Question: Is a violin usually played with a bow?
+
+Options:
+A. Yes
+B. No
+
+Answer with only the option letter.",A. Yes | B. No,A,A,A,true,1,1713,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,boolq_sample,BoolQ-inspired local sample,reading:yes_no,boolq_local_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Passage: A leap year in the Gregorian calendar usually has 366 days, including February 29.
+Question: Does a leap year usually have 365 days?
+
+Options:
+A. Yes
+B. No
+
+Answer with only the option letter.",A. Yes | B. No,B,B,B,true,1,2505,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,boolq_sample,BoolQ-inspired local sample,reading:yes_no,boolq_local_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Passage: The Sahara is a desert in North Africa. It is one of the largest hot deserts in the world.
+Question: Is the Sahara located in North Africa?
+
+Options:
+A. Yes
+B. No
+
+Answer with only the option letter.",A. Yes | B. No,A,A,A,true,1,2036,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,piqa_sample,PIQA-inspired local sample,commonsense:physical,piqa_local_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Goal: Keep soup warm while carrying it to another room.
+
+Options:
+A. Put a fitted lid on the bowl before carrying it.
+B. Put ice cubes in the bowl before carrying it.
+
+Answer with only the option letter.",A. Put a fitted lid on the bowl before carrying it. | B. Put ice cubes in the bowl before carrying it.,A,A,A,true,1,1556,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,piqa_sample,PIQA-inspired local sample,commonsense:physical,piqa_local_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Goal: Remove dust from a high shelf.
+
+Options:
+A. Use a duster with an extendable handle.
+B. Use a spoon to stir the air near the shelf.
+
+Answer with only the option letter.",A. Use a duster with an extendable handle. | B. Use a spoon to stir the air near the shelf.,A,A,A,true,1,1514,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,piqa_sample,PIQA-inspired local sample,commonsense:physical,piqa_local_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Goal: Stop a small table from wobbling on an uneven floor.
+
+Options:
+A. Place a folded piece of cardboard under the short leg.
+B. Place a feather on top of the table.
+
+Answer with only the option letter.",A. Place a folded piece of cardboard under the short leg. | B. Place a feather on top of the table.,A,A,A,true,1,1538,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,piqa_sample,PIQA-inspired local sample,commonsense:physical,piqa_local_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Goal: Cut a piece of paper in a straight line.
+
+Options:
+A. Use scissors and follow a ruler edge.
+B. Use a wet sponge as the cutting tool.
+
+Answer with only the option letter.",A. Use scissors and follow a ruler edge. | B. Use a wet sponge as the cutting tool.,A,A,A,true,1,1578,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,piqa_sample,PIQA-inspired local sample,commonsense:physical,piqa_local_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Goal: Make a slippery jar lid easier to open.
+
+Options:
+A. Wrap a dry rubber grip around the lid and twist.
+B. Cover the lid with cooking oil before twisting.
+
+Answer with only the option letter.",A. Wrap a dry rubber grip around the lid and twist. | B. Cover the lid with cooking oil before twisting.,A,A,A,true,1,1668,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A study analyzes only patients who were hospitalized. Hospitalization is caused by both the exposure and the disease outcome. Conditioning on hospitalization can create which kind of bias?
+
+Options:
+A. Simple random sampling error
+B. Regression dilution
+C. Confounding by indication
+D. Collider stratification bias
+E. Classical measurement error
+F. Survivorship from left truncation only
+G. Ecological fallacy
+H. Instrumental-variable compliance bias
+I. Autocorrelation
+J. Multiple-testing inflation
+
+Answer with only the option letter.",A. Simple random sampling error | B. Regression dilution | C. Confounding by indication | D. Collider stratification bias | E. Classical measurement error | F. Survivorship from left truncation only | G. Ecological fallacy | H. Instrumental-variable compliance bias | I. Autocorrelation | J. Multiple-testing inflation,D,D,D,true,1,6797,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] For an ideal gas undergoing an isothermal process, what is the change in internal energy if temperature is unchanged?
+
+Options:
+A. Positive and equal to the heat absorbed
+B. Zero
+C. Negative and equal to the work done by the gas
+D. Equal to pressure times volume
+E. Equal to the entropy change
+F. Always proportional to the path length
+G. Undefined without knowing the mass
+H. Equal to the enthalpy change for all gases
+I. Equal to absolute temperature
+J. Infinite for reversible expansion
+
+Answer with only the option letter.",A. Positive and equal to the heat absorbed | B. Zero | C. Negative and equal to the work done by the gas | D. Equal to pressure times volume | E. Equal to the entropy change | F. Always proportional to the path length | G. Undefined without knowing the mass | H. Equal to the enthalpy change for all gases | I. Equal to absolute temperature | J. Infinite for reversible expansion,B,B,B,true,1,6810,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] In a finite group, Lagrange's theorem implies which statement?
+
+Options:
+A. Every subgroup is normal
+B. Every element has prime order
+C. The order of any subgroup divides the order of the group
+D. Every group of even order is cyclic
+E. A subgroup and its quotient have the same order
+F. The center has the same order as the group
+G. Every homomorphism is injective
+H. Every finite group is abelian
+I. The order of a product always equals the product of orders
+J. Every subgroup has index one
+
+Answer with only the option letter.",A. Every subgroup is normal | B. Every element has prime order | C. The order of any subgroup divides the order of the group | D. Every group of even order is cyclic | E. A subgroup and its quotient have the same order | F. The center has the same order as the group | G. Every homomorphism is injective | H. Every finite group is abelian | I. The order of a product always equals the product of orders | J. Every subgroup has index one,C,C,C,true,1,5692,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A linear regression model has heteroskedastic errors but the conditional mean is correctly specified and regressors are exogenous. Which estimator remains unbiased but has invalid usual standard errors?
+
+Options:
+A. Ordinary least squares coefficients
+B. Maximum likelihood under normal homoskedastic errors only
+C. Principal components regression
+D. K-nearest neighbors
+E. Ridge coefficients with positive penalty
+F. Lasso coefficients with positive penalty
+G. Two-stage least squares with invalid instruments
+H. Naive Bayes coefficients
+I. Random forest feature importances
+J. Kaplan-Meier survival estimates
+
+Answer with only the option letter.",A. Ordinary least squares coefficients | B. Maximum likelihood under normal homoskedastic errors only | C. Principal components regression | D. K-nearest neighbors | E. Ridge coefficients with positive penalty | F. Lasso coefficients with positive penalty | G. Two-stage least squares with invalid instruments | H. Naive Bayes coefficients | I. Random forest feature importances | J. Kaplan-Meier survival estimates,A,A,A,true,1,13806,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] In constitutional law, strict scrutiny generally requires that a challenged government action be narrowly tailored to serve what kind of interest?
+
+Options:
+A. Any rational governmental interest
+B. A legitimate administrative interest
+C. A compelling governmental interest
+D. A private contractual interest
+E. A customary historical interest only
+F. A revenue-maximizing interest
+G. An interest chosen by the court after trial
+H. A minimal burden interest
+I. A speculative future interest
+J. No interest if the rule is facially neutral
+
+Answer with only the option letter.",A. Any rational governmental interest | B. A legitimate administrative interest | C. A compelling governmental interest | D. A private contractual interest | E. A customary historical interest only | F. A revenue-maximizing interest | G. An interest chosen by the court after trial | H. A minimal burden interest | I. A speculative future interest | J. No interest if the rule is facially neutral,C,C,C,true,1,4958,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_006#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A compiler converts source code into an intermediate representation and then performs common subexpression elimination. What is the main purpose of that optimization?
+
+Options:
+A. Replace all loops with recursion
+B. Avoid recomputing identical expressions whose values are unchanged
+C. Encrypt machine instructions
+D. Infer user interface layouts
+E. Increase the number of register spills
+F. Disable constant folding
+G. Guarantee thread safety for all code
+H. Convert dynamic dispatch to reflection
+I. Remove the need for parsing
+J. Make every expression evaluate lazily
+
+Answer with only the option letter.",A. Replace all loops with recursion | B. Avoid recomputing identical expressions whose values are unchanged | C. Encrypt machine instructions | D. Infer user interface layouts | E. Increase the number of register spills | F. Disable constant folding | G. Guarantee thread safety for all code | H. Convert dynamic dispatch to reflection | I. Remove the need for parsing | J. Make every expression evaluate lazily,B,B,B,true,1,6080,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_007#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which condition is most central to the Gauss-Markov theorem for ordinary least squares being BLUE?
+
+Options:
+A. Errors must be exactly normally distributed
+B. Regressors must be binary
+C. The model must be linear in parameters with zero conditional mean errors and homoskedastic uncorrelated errors
+D. The sample must contain more variables than observations
+E. The outcome must be categorical
+F. The loss must be absolute deviation
+G. The regressors must be independent of each other
+H. The intercept must be omitted
+I. The residuals must all equal zero
+J. The coefficient estimates must be positive
+
+Answer with only the option letter.",A. Errors must be exactly normally distributed | B. Regressors must be binary | C. The model must be linear in parameters with zero conditional mean errors and homoskedastic uncorrelated errors | D. The sample must contain more variables than observations | E. The outcome must be categorical | F. The loss must be absolute deviation | G. The regressors must be independent of each other | H. The intercept must be omitted | I. The residuals must all equal zero | J. The coefficient estimates must be positive,C,C,C,true,1,8532,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_008#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] In Bayesian inference, a conjugate prior is useful mainly because it does what?
+
+Options:
+A. Forces the likelihood to be uniform
+B. Makes the posterior belong to the same family as the prior
+C. Eliminates all uncertainty in finite samples
+D. Prevents overfitting in every model
+E. Makes the posterior independent of data
+F. Guarantees a causal interpretation
+G. Requires no normalization constant in any model
+H. Converts discrete variables into continuous ones
+I. Makes maximum likelihood unnecessary by definition
+J. Ensures every prior is noninformative
+
+Answer with only the option letter.",A. Forces the likelihood to be uniform | B. Makes the posterior belong to the same family as the prior | C. Eliminates all uncertainty in finite samples | D. Prevents overfitting in every model | E. Makes the posterior independent of data | F. Guarantees a causal interpretation | G. Requires no normalization constant in any model | H. Converts discrete variables into continuous ones | I. Makes maximum likelihood unnecessary by definition | J. Ensures every prior is noninformative,B,B,B,true,1,5550,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_009#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which property distinguishes a context-free language from a regular language in the Chomsky hierarchy?
+
+Options:
+A. It can be recognized only by finite automata
+B. It can require a pushdown stack for nested structure
+C. It must be undecidable
+D. It cannot contain terminals
+E. It can be parsed only by a Turing machine with an oracle
+F. It has no grammar representation
+G. It always has finite cardinality
+H. It cannot express balanced parentheses
+I. It is closed under arbitrary semantic interpretation
+J. It must be generated by a right-linear grammar
+
+Answer with only the option letter.",A. It can be recognized only by finite automata | B. It can require a pushdown stack for nested structure | C. It must be undecidable | D. It cannot contain terminals | E. It can be parsed only by a Turing machine with an oracle | F. It has no grammar representation | G. It always has finite cardinality | H. It cannot express balanced parentheses | I. It is closed under arbitrary semantic interpretation | J. It must be generated by a right-linear grammar,B,B,B,true,1,9673,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_010#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] In finance, duration of a bond is most directly related to which risk?
+
+Options:
+A. Operational fraud risk
+B. Sensitivity of bond price to interest-rate changes
+C. Probability of a data breach
+D. Currency denomination only
+E. Equity voting rights
+F. Tax filing frequency
+G. Inventory turnover
+H. Accounting depreciation method
+I. Market microstructure latency
+J. Share dilution from warrants only
+
+Answer with only the option letter.",A. Operational fraud risk | B. Sensitivity of bond price to interest-rate changes | C. Probability of a data breach | D. Currency denomination only | E. Equity voting rights | F. Tax filing frequency | G. Inventory turnover | H. Accounting depreciation method | I. Market microstructure latency | J. Share dilution from warrants only,B,B,B,true,1,3452,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_011#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A p-value is best interpreted as which quantity under the null hypothesis?
+
+Options:
+A. The probability the null hypothesis is true
+B. The probability the alternative hypothesis is true
+C. The probability of observing a statistic at least as extreme as the one observed
+D. The posterior probability of the model
+E. The size of the treatment effect
+F. The probability that replication is guaranteed
+G. The fraction of observations that are outliers
+H. The confidence level
+I. The variance of the estimator
+J. The Type II error rate exactly
+
+Answer with only the option letter.",A. The probability the null hypothesis is true | B. The probability the alternative hypothesis is true | C. The probability of observing a statistic at least as extreme as the one observed | D. The posterior probability of the model | E. The size of the treatment effect | F. The probability that replication is guaranteed | G. The fraction of observations that are outliers | H. The confidence level | I. The variance of the estimator | J. The Type II error rate exactly,C,C,C,true,1,5084,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_012#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] In operating systems, copy-on-write after fork mainly delays which action until a page is modified?
+
+Options:
+A. Network routing
+B. Physical copying of memory pages
+C. Parsing of command-line arguments
+D. CPU instruction decoding
+E. Filesystem formatting
+F. Disk encryption key rotation
+G. Kernel compilation
+H. Process scheduling forever
+I. DNS resolution
+J. Cache invalidation for all devices
+
+Answer with only the option letter.",A. Network routing | B. Physical copying of memory pages | C. Parsing of command-line arguments | D. CPU instruction decoding | E. Filesystem formatting | F. Disk encryption key rotation | G. Kernel compilation | H. Process scheduling forever | I. DNS resolution | J. Cache invalidation for all devices,B,B,B,true,1,5086,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_013#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A legal rule is applied retroactively to events completed before the rule was announced. Which term best describes that timing?
+
+Options:
+A. Prospective application
+B. Interlocutory review
+C. Retroactive application
+D. Mootness
+E. Standing
+F. Ripeness
+G. Venue transfer
+H. Collateral estoppel only
+I. Original jurisdiction
+J. Strict liability
+
+Answer with only the option letter.",A. Prospective application | B. Interlocutory review | C. Retroactive application | D. Mootness | E. Standing | F. Ripeness | G. Venue transfer | H. Collateral estoppel only | I. Original jurisdiction | J. Strict liability,C,C,C,true,1,3674,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_014#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which biological process directly produces messenger RNA from a DNA template?
+
+Options:
+A. Translation
+B. Transcription
+C. Glycolysis
+D. Meiosis II
+E. Oxidative phosphorylation
+F. Endocytosis
+G. Apoptosis
+H. Chromatography
+I. Ubiquitination only
+J. Allosteric inhibition
+
+Answer with only the option letter.",A. Translation | B. Transcription | C. Glycolysis | D. Meiosis II | E. Oxidative phosphorylation | F. Endocytosis | G. Apoptosis | H. Chromatography | I. Ubiquitination only | J. Allosteric inhibition,B,B,B,true,1,3309,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_015#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] In information theory, a lossless compression code cannot have average length below which quantity in the ideal limit?
+
+Options:
+A. Variance
+B. Entropy of the source
+C. Mean absolute deviation
+D. Euclidean norm
+E. Clock speed
+F. Page rank
+G. Nyquist frequency only
+H. The sample maximum
+I. The checksum
+J. The Hamming distance between all pairs
+
+Answer with only the option letter.",A. Variance | B. Entropy of the source | C. Mean absolute deviation | D. Euclidean norm | E. Clock speed | F. Page rank | G. Nyquist frequency only | H. The sample maximum | I. The checksum | J. The Hamming distance between all pairs,B,B,B,true,1,4041,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,mmlu_pro_hard_sample,MMLU-Pro-style hard local sample,advanced_knowledge,mmlu_pro_hard_016#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A Nash equilibrium in a normal-form game is a strategy profile where what condition holds?
+
+Options:
+A. Every player receives the same payoff
+B. No player can improve payoff by unilaterally deviating
+C. The game must be zero-sum
+D. All strategies are strictly dominated
+E. The outcome maximizes total social welfare by definition
+F. Players move in a fixed sequence only
+G. Mixed strategies are forbidden
+H. At least one player has perfect information
+I. The equilibrium is always unique
+J. The game must have two players
+
+Answer with only the option letter.",A. Every player receives the same payoff | B. No player can improve payoff by unilaterally deviating | C. The game must be zero-sum | D. All strategies are strictly dominated | E. The outcome maximizes total social welfare by definition | F. Players move in a fixed sequence only | G. Mixed strategies are forbidden | H. At least one player has perfect information | I. The equilibrium is always unique | J. The game must have two players,B,B,B,true,1,3805,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,bbh_sample,BBH-inspired local sample,reasoning:hard,bbh_local_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Evaluate the boolean expression: not (True and False).
+
+Options:
+A. True
+B. False
+
+Answer with only the option letter.",A. True | B. False,A,A,A,true,1,1983,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,bbh_sample,BBH-inspired local sample,reasoning:hard,bbh_local_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] If today is Wednesday, what day is it three days after tomorrow?
+
+Options:
+A. Friday
+B. Saturday
+C. Sunday
+D. Monday
+
+Answer with only the option letter.",A. Friday | B. Saturday | C. Sunday | D. Monday,C,C,C,true,1,1798,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,bbh_sample,BBH-inspired local sample,reasoning:hard,bbh_local_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Sort these words alphabetically: pear, apple, grape.
+
+Options:
+A. apple, grape, pear
+B. grape, pear, apple
+C. pear, grape, apple
+D. apple, pear, grape
+
+Answer with only the option letter.","A. apple, grape, pear | B. grape, pear, apple | C. pear, grape, apple | D. apple, pear, grape",A,A,A,true,1,2401,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,bbh_sample,BBH-inspired local sample,reasoning:hard,bbh_local_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A box contains a smaller box. The smaller box contains a key. Where is the key?
+
+Options:
+A. Inside the smaller box
+B. Outside both boxes
+C. Only inside the larger box but not the smaller box
+D. On top of both boxes
+
+Answer with only the option letter.",A. Inside the smaller box | B. Outside both boxes | C. Only inside the larger box but not the smaller box | D. On top of both boxes,A,A,A,true,1,2763,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,bbh_sample,BBH-inspired local sample,reasoning:hard,bbh_local_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which option has exactly three vowels?
+
+Options:
+A. education
+B. banana
+C. chair
+D. sky
+
+Answer with only the option letter.",A. education | B. banana | C. chair | D. sky,B,B,B,true,1,3106,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,openbookqa_sample,OpenBookQA-inspired local sample,science:openbook,openbookqa_local_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Plants need sunlight mainly because sunlight provides energy for which process?
+
+Options:
+A. Photosynthesis
+B. Rusting
+C. Melting
+D. Evaporation of metal
+
+Answer with only the option letter.",A. Photosynthesis | B. Rusting | C. Melting | D. Evaporation of metal,A,A,A,true,1,2095,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,openbookqa_sample,OpenBookQA-inspired local sample,science:openbook,openbookqa_local_002#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A magnet will most likely attract which object?
+
+Options:
+A. Iron nail
+B. Wooden spoon
+C. Plastic cup
+D. Paper towel
+
+Answer with only the option letter.",A. Iron nail | B. Wooden spoon | C. Plastic cup | D. Paper towel,A,A,A,true,1,1670,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,openbookqa_sample,OpenBookQA-inspired local sample,science:openbook,openbookqa_local_003#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which object is designed to measure temperature?
+
+Options:
+A. Thermometer
+B. Compass
+C. Ruler
+D. Scale for mass
+
+Answer with only the option letter.",A. Thermometer | B. Compass | C. Ruler | D. Scale for mass,A,A,A,true,1,1479,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,openbookqa_sample,OpenBookQA-inspired local sample,science:openbook,openbookqa_local_004#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A shadow forms when light is blocked by what kind of object?
+
+Options:
+A. Opaque object
+B. A sound wave
+C. A smell
+D. A magnetic field only
+
+Answer with only the option letter.",A. Opaque object | B. A sound wave | C. A smell | D. A magnetic field only,A,A,A,true,1,1741,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,openbookqa_sample,OpenBookQA-inspired local sample,science:openbook,openbookqa_local_005#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] Which material is commonly used as an insulator around electrical wires?
+
+Options:
+A. Rubber
+B. Copper
+C. Aluminum
+D. Salt water
+
+Answer with only the option letter.",A. Rubber | B. Copper | C. Aluminum | D. Salt water,A,A,A,true,1,2051,
+5e998d85-523f-4bea-89c5-5f5266338795,2026-06-05T10:02:27.092Z,http://192.168.111.36:1234/v1,google/gemma-4-12b,gpqa_hard_sample,GPQA-style hard local sample,science_reasoning,gpqa_hard_001#sample-1,"[system] You are being evaluated. Follow the requested output format exactly. Do not explain unless asked.
+
+[user] A weak acid buffer has pH exactly equal to the acid's pKa. According to the Henderson-Hasselbalch equation, what is the ratio of conjugate base to weak acid?
+
+Options:
+A. 10 to 1
+B. 1 to 1
+C. 1 to 10
+D. The ratio is undefined because pH equals pKa
+
+Answer with only the option letter.",A. 10 to 1 | B. 1 to 1 | C. 1 to 10 | D. The ratio is undefined because pH equals pKa,B,B,B,true,1,4978,

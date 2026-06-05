@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { LmStudioClient, isLikelyReasoningModel, nativeApiBaseUrl, recommendModel } from "../lmStudioClient.js";
+import {
+  LmStudioClient,
+  isLikelyReasoningModel,
+  nativeApiBaseUrl,
+  parseStreamingChatCompletion,
+  recommendModel
+} from "../lmStudioClient.js";
 
 describe("LM Studio model recommendation", () => {
   it("prefers the configured fast local test model when available", () => {
@@ -13,8 +19,10 @@ describe("LM Studio model recommendation", () => {
   });
 
   it("keeps reasoning_content separate from final answer content", async () => {
-    const client = new LmStudioClient(async () =>
-      new Response(
+    let requestBody: { stream?: boolean } | undefined;
+    const client = new LmStudioClient(async (_url, init) => {
+      requestBody = JSON.parse(String(init?.body ?? "{}")) as { stream?: boolean };
+      return new Response(
         JSON.stringify({
           choices: [
             {
@@ -27,8 +35,8 @@ describe("LM Studio model recommendation", () => {
           ]
         }),
         { status: 200, headers: { "content-type": "application/json" } }
-      )
-    );
+      );
+    });
 
     await expect(
       client.chatCompletion({
@@ -41,7 +49,30 @@ describe("LM Studio model recommendation", () => {
     ).resolves.toMatchObject({
       output: "B",
       reasoningOutput: "Answer: A",
-      finishReason: "stop"
+      finishReason: "stop",
+      latencyMs: 0
+    });
+    expect(requestBody?.stream).toBe(true);
+  });
+
+  it("measures streaming latency from first generated token to last generated token", async () => {
+    const encoder = new TextEncoder();
+    const body = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(encoder.encode('data: {"choices":[{"delta":{"content":"A"}}]}\n\n'));
+        controller.enqueue(encoder.encode('data: {"choices":[{"delta":{"reasoning_content":"hidden"}}]}\n\n'));
+        controller.enqueue(encoder.encode('data: {"choices":[{"delta":{"content":"B"},"finish_reason":"stop"}]}\n\n'));
+        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+        controller.close();
+      }
+    });
+    const timestamps = [100, 125, 160];
+
+    await expect(parseStreamingChatCompletion(body, () => timestamps.shift() ?? 160)).resolves.toEqual({
+      output: "AB",
+      reasoningOutput: "hidden",
+      finishReason: "stop",
+      latencyMs: 60
     });
   });
 
