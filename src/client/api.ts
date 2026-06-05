@@ -1,4 +1,14 @@
-import type { BenchmarkDefinition, ImportFormat, LmStudioModel, PromptPreview, PromptResultRow, RunOptions, RunSummary } from "./types";
+import type {
+  BenchmarkDefinition,
+  ImportFormat,
+  LmStudioModel,
+  OfficialSuiteDefinition,
+  OfficialSuiteId,
+  PromptPreview,
+  PromptResultRow,
+  RunOptions,
+  RunSummary
+} from "./types";
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, {
@@ -44,6 +54,55 @@ export async function importBenchmark(payload: {
 
 export async function fetchHistory(): Promise<{ summaries: RunSummary[]; rows: PromptResultRow[] }> {
   return requestJson<{ summaries: RunSummary[]; rows: PromptResultRow[] }>("/api/runs");
+}
+
+export async function fetchOfficialSuites(): Promise<{
+  suites: OfficialSuiteDefinition[];
+  officialSwebenchEvaluationEnabled: boolean;
+}> {
+  return requestJson("/api/official-suites");
+}
+
+export async function startOfficialPredictionRun(payload: {
+  suiteId: OfficialSuiteId;
+  serverBaseUrl: string;
+  modelId: string;
+  source:
+    | { type: "huggingface"; datasetName?: string; split?: string }
+    | { type: "inline_file"; file: { name: string; content: string } };
+  limit?: number;
+  instanceIds?: string[];
+  outputPath?: string;
+  temperature: number;
+  maxTokens?: number;
+  timeoutMs: number;
+}): Promise<{ runId: string }> {
+  return requestJson("/api/official-suites/prediction-runs", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+}
+
+export async function startOfficialEvaluationRun(payload: {
+  suiteId: OfficialSuiteId;
+  predictionsPath: string;
+  runId?: string;
+  datasetName?: string;
+  split?: string;
+  maxWorkers?: number;
+  instanceIds?: string[];
+  namespace?: string;
+  swebenchProRepoPath?: string;
+  rawSamplePath?: string;
+  outputDir?: string;
+  scriptsDir?: string;
+  dockerhubUsername?: string;
+  useLocalDocker?: boolean;
+}): Promise<{ runId: string }> {
+  return requestJson("/api/official-suites/evaluation-runs", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
 }
 
 export async function testConnection(baseUrl: string, timeoutMs: number): Promise<{

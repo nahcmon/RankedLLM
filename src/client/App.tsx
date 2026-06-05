@@ -1,14 +1,14 @@
 import { BarChart3, Database, RefreshCw } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { fetchBenchmarkPreviews, fetchBenchmarks, fetchHistory, fetchModels, startRun, testConnection } from "./api";
-import { BenchmarkPreviewPanel } from "./components/BenchmarkPreviewPanel";
+import { fetchBenchmarks, fetchHistory, fetchModels, startRun, testConnection } from "./api";
 import { BenchmarkSelector } from "./components/BenchmarkSelector";
 import { ConfigurationPanel } from "./components/ConfigurationPanel";
 import { HistoryPage } from "./components/HistoryPage";
 import { ImportPanel } from "./components/ImportPanel";
 import { LiveRunPanel } from "./components/LiveRunPanel";
+import { OfficialSwebenchPanel } from "./components/OfficialSwebenchPanel";
 import { StatusPill } from "./components/StatusPill";
-import type { BenchmarkDefinition, LmStudioModel, PromptPreview, PromptResultRow, RunProgress, RunSummary } from "./types";
+import type { BenchmarkDefinition, LmStudioModel, PromptResultRow, RunProgress, RunSummary } from "./types";
 
 const DEFAULT_SERVER_BASE_URL = "http://192.168.111.36:1234/v1";
 
@@ -31,7 +31,6 @@ export default function App() {
   const [connectionMessage, setConnectionMessage] = useState("");
   const [connectionTone, setConnectionTone] = useState<StatusTone>("idle");
   const [history, setHistory] = useState<RunSummary[]>([]);
-  const [previews, setPreviews] = useState<PromptPreview[]>([]);
   const [recentResults, setRecentResults] = useState<PromptResultRow[]>([]);
   const [activeProgress, setActiveProgress] = useState<RunProgress>();
   const [isBusy, setIsBusy] = useState(false);
@@ -43,10 +42,6 @@ export default function App() {
   useEffect(() => {
     void loadInitialData();
   }, []);
-
-  useEffect(() => {
-    void loadPreviews();
-  }, [selectedBenchmarkIds.join(",")]);
 
   async function loadInitialData() {
     try {
@@ -64,18 +59,6 @@ export default function App() {
   async function refreshHistory() {
     const payload = await fetchHistory();
     setHistory(payload.summaries);
-  }
-
-  async function loadPreviews() {
-    if (selectedBenchmarkIds.length === 0) {
-      setPreviews([]);
-      return;
-    }
-    try {
-      setPreviews(await fetchBenchmarkPreviews(selectedBenchmarkIds, 12));
-    } catch (error) {
-      setAppError(error instanceof Error ? error.message : String(error));
-    }
   }
 
   async function handleTestConnection() {
@@ -179,7 +162,6 @@ export default function App() {
 
   function handleBenchmarkImported(nextBenchmarks: BenchmarkDefinition[]) {
     setBenchmarks(nextBenchmarks);
-    void loadPreviews();
   }
 
   function subscribeToRun(runId: string) {
@@ -282,6 +264,13 @@ export default function App() {
               onRefreshModels={handleRefreshModels}
             />
             <ImportPanel onImported={handleBenchmarkImported} />
+            <OfficialSwebenchPanel
+              serverBaseUrl={serverBaseUrl}
+              modelId={modelId}
+              temperature={temperature}
+              timeoutMs={timeoutMs}
+              maxTokens={maxTokens}
+            />
           </div>
 
           <div className="dashboard-main">
@@ -295,7 +284,6 @@ export default function App() {
               onCodeExecutionChange={handleCodeExecutionChange}
               onRun={handleRun}
             />
-            <BenchmarkPreviewPanel previews={previews} />
             <LiveRunPanel progress={activeProgress} recentResults={recentResults} />
           </div>
         </div>

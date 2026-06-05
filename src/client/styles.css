@@ -190,6 +190,7 @@ button:disabled {
 .live-panel,
 .preview-panel,
 .import-panel,
+.official-panel,
 .history-panel {
   padding: 18px;
 }
@@ -469,6 +470,90 @@ button:disabled {
   background: var(--surface-muted);
   font-size: 12px;
   line-height: 1.35;
+}
+
+.official-warning {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 12px;
+  padding: 9px 10px;
+  border: 1px solid #f1d4a8;
+  border-radius: 7px;
+  color: var(--warning);
+  background: #fff8ec;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.official-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 4px;
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.official-link:hover {
+  text-decoration: underline;
+}
+
+.official-action {
+  width: 100%;
+  margin-top: 2px;
+}
+
+.official-toggle {
+  align-self: end;
+  min-height: 38px;
+  margin-bottom: 12px;
+}
+
+.official-progress {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-muted);
+}
+
+.official-progress__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.official-progress p {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.official-progress pre {
+  overflow: auto;
+  max-height: 150px;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  background: #fff;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  white-space: pre-wrap;
 }
 
 .progress-track {
@@ -826,10 +911,14 @@ button:disabled {
   min-width: 0;
 }
 
+.scatter-chart__plot {
+  position: relative;
+  min-width: 0;
+}
+
 .scatter-chart svg {
   width: 100%;
   height: auto;
-  min-height: 260px;
   overflow: visible;
 }
 
@@ -841,25 +930,30 @@ button:disabled {
 
 .scatter-chart__best-label {
   fill: var(--success);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 760;
   text-transform: uppercase;
 }
 
 .scatter-chart__grid {
-  stroke: #e6ecef;
+  stroke: #edf1f3;
+  stroke-width: 0.8;
+}
+
+.scatter-chart__grid--major {
+  stroke: #e2e8eb;
   stroke-width: 1;
 }
 
 .scatter-chart__axis {
   stroke: var(--border-strong);
-  stroke-width: 1.5;
+  stroke-width: 1;
 }
 
 .scatter-chart__tick,
 .scatter-chart__axis-label {
   fill: var(--muted);
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 650;
   text-anchor: middle;
 }
@@ -870,7 +964,8 @@ button:disabled {
 
 .scatter-chart__axis-label {
   fill: var(--text);
-  font-weight: 760;
+  font-size: 11px;
+  font-weight: 720;
 }
 
 .scatter-chart__axis-label--y {
@@ -883,6 +978,64 @@ button:disabled {
   stroke: #fff;
   stroke-width: 1.8;
   filter: drop-shadow(0 1px 2px rgba(28, 39, 49, 0.18));
+  transition:
+    r 120ms ease,
+    stroke-width 120ms ease,
+    filter 120ms ease;
+}
+
+.scatter-chart__point-hitbox {
+  outline: none;
+  cursor: default;
+}
+
+.scatter-chart__point-hitbox:focus-visible .scatter-chart__point,
+.scatter-chart__point--active {
+  stroke-width: 2.4;
+  filter: drop-shadow(0 2px 4px rgba(28, 39, 49, 0.24));
+}
+
+.scatter-chart__point-target {
+  fill: transparent;
+  pointer-events: all;
+}
+
+.scatter-chart__tooltip {
+  position: absolute;
+  z-index: 2;
+  min-width: 180px;
+  max-width: min(320px, calc(100% - 20px));
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(28, 39, 49, 0.16);
+  font-size: 12px;
+  line-height: 1.35;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 10px));
+}
+
+.scatter-chart__tooltip--below {
+  transform: translate(-50%, 10px);
+}
+
+.scatter-chart__tooltip strong,
+.scatter-chart__tooltip span {
+  display: block;
+}
+
+.scatter-chart__tooltip strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 760;
+}
+
+.scatter-chart__tooltip span {
+  margin-top: 3px;
+  color: var(--muted);
 }
 
 .scatter-chart__legend {

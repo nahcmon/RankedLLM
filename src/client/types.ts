@@ -116,3 +116,33 @@ export interface RunSummary {
   averageLatencyMs: number;
   errors: number;
 }
+
+export type OfficialSuiteId = "swe_bench" | "swe_bench_pro";
+
+export interface OfficialSuiteDefinition {
+  id: OfficialSuiteId;
+  name: string;
+  description: string;
+  defaultDatasetName: string;
+  defaultSplit: string;
+  supportsPredictionGeneration: boolean;
+  supportsOfficialEvaluation: boolean;
+  evaluationRequiresEnv: string;
+  sourceUrl: string;
+}
+
+export interface OfficialRunProgress {
+  runId: string;
+  suiteId: OfficialSuiteId;
+  type: "prediction" | "evaluation";
+  status: "queued" | "running" | "completed" | "failed";
+  totalItems: number;
+  completedItems: number;
+  errors: number;
+  message?: string;
+  artifactPath?: string;
+  currentInstanceId?: string;
+  lastError?: string;
+  startedAt: string;
+  completedAt?: string;
+}

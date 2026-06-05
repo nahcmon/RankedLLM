@@ -161,3 +161,72 @@ export interface BenchmarkImportRequest {
   limit?: number;
   files: ImportFilePayload[];
 }
+
+export type OfficialSuiteId = "swe_bench" | "swe_bench_pro";
+export type OfficialRunStatus = "queued" | "running" | "completed" | "failed";
+
+export interface OfficialSuiteDefinition {
+  id: OfficialSuiteId;
+  name: string;
+  description: string;
+  defaultDatasetName: string;
+  defaultSplit: string;
+  supportsPredictionGeneration: boolean;
+  supportsOfficialEvaluation: boolean;
+  evaluationRequiresEnv: string;
+  sourceUrl: string;
+}
+
+export interface OfficialSuiteSource {
+  type: "huggingface" | "inline_file";
+  datasetName?: string;
+  split?: string;
+  file?: ImportFilePayload;
+}
+
+export interface OfficialPredictionRunRequest {
+  suiteId: OfficialSuiteId;
+  serverBaseUrl: string;
+  modelId: string;
+  source: OfficialSuiteSource;
+  limit?: number;
+  instanceIds?: string[];
+  outputPath?: string;
+  temperature: number;
+  maxTokens?: number;
+  timeoutMs: number;
+}
+
+export interface OfficialEvaluationRunRequest {
+  suiteId: OfficialSuiteId;
+  predictionsPath: string;
+  runId?: string;
+  datasetName?: string;
+  split?: string;
+  maxWorkers?: number;
+  instanceIds?: string[];
+  namespace?: string;
+  reportDir?: string;
+  swebenchProRepoPath?: string;
+  rawSamplePath?: string;
+  outputDir?: string;
+  scriptsDir?: string;
+  dockerhubUsername?: string;
+  useLocalDocker?: boolean;
+}
+
+export interface OfficialRunProgress {
+  runId: string;
+  suiteId: OfficialSuiteId;
+  type: "prediction" | "evaluation";
+  status: OfficialRunStatus;
+  totalItems: number;
+  completedItems: number;
+  errors: number;
+  message?: string;
+  artifactPath?: string;
+  currentInstanceId?: string;
+  lastError?: string;
+  startedAt: string;
+  completedAt?: string;
+}

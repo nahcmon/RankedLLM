@@ -1,4 +1,5 @@
 import { BarChart3, Clock, Crosshair } from "lucide-react";
+import { useState } from "react";
 import type { RunSummary } from "../types";
 
 interface ComparisonChartsProps {
@@ -80,14 +81,19 @@ export function ComparisonCharts({ summaries }: ComparisonChartsProps) {
 }
 
 function AccuracyLatencyChart({ summaries }: { summaries: RunSummary[] }) {
-  const width = 720;
-  const height = 292;
-  const left = 58;
-  const right = 22;
-  const top = 18;
-  const bottom = 42;
+  const [activeModelId, setActiveModelId] = useState<string | null>(null);
+  const width = 1440;
+  const height = 360;
+  const left = 78;
+  const right = 34;
+  const top = 28;
+  const bottom = 58;
   const plotWidth = width - left - right;
   const plotHeight = height - top - bottom;
+  const yGridTicks = Array.from({ length: 11 }, (_, index) => index * 10);
+  const yLabelTicks = new Set([0, 20, 40, 60, 80, 100]);
+  const xGridTicks = Array.from({ length: 11 }, (_, index) => index / 10);
+  const xLabelTicks = new Set([0, 0.2, 0.4, 0.6, 0.8, 1]);
   const modelRows = aggregateByModel(summaries);
   const maxLatency = Math.max(1, ...modelRows.map((row) => row.averageLatencyMs));
   const points = modelRows
@@ -98,36 +104,57 @@ function AccuracyLatencyChart({ summaries }: { summaries: RunSummary[] }) {
       color: chartColor(index)
     }))
     .sort((a, b) => a.row.averageLatencyMs - b.row.averageLatencyMs);
+  const activePoint = activeModelId ? points.find((point) => point.row.modelId === activeModelId) : undefined;
+  const tooltipLeft = activePoint ? clamp((activePoint.x / width) * 100, 8, 92) : 0;
+  const tooltipTop = activePoint ? clamp((activePoint.y / height) * 100, 6, 94) : 0;
+  const tooltipBelow = activePoint ? activePoint.y < top + 52 : false;
 
   return (
     <div className="scatter-chart" role="img" aria-label="Accuracy on the y axis and average latency on the x axis">
-      <svg viewBox={`0 0 ${width} ${height}`}>
+      <div className="scatter-chart__plot">
+        <svg viewBox={`0 0 ${width} ${height}`}>
         <rect className="scatter-chart__best-zone" x={left} y={top} width={plotWidth / 2} height={plotHeight / 2} rx="6" />
-        <text className="scatter-chart__best-label" x={left + 10} y={top + 20}>
+        <text className="scatter-chart__best-label" x={left + 12} y={top + 24}>
           best zone
         </text>
 
-        {[0, 25, 50, 75, 100].map((tick) => {
+        {yGridTicks.map((tick) => {
           const y = top + ((100 - tick) / 100) * plotHeight;
           return (
             <g key={tick}>
-              <line className="scatter-chart__grid" x1={left} x2={left + plotWidth} y1={y} y2={y} />
-              <text className="scatter-chart__tick scatter-chart__tick--y" x={left - 10} y={y + 4}>
-                {tick}%
-              </text>
+              <line
+                className={yLabelTicks.has(tick) ? "scatter-chart__grid scatter-chart__grid--major" : "scatter-chart__grid"}
+                x1={left}
+                x2={left + plotWidth}
+                y1={y}
+                y2={y}
+              />
+              {yLabelTicks.has(tick) ? (
+                <text className="scatter-chart__tick scatter-chart__tick--y" x={left - 10} y={y + 4}>
+                  {tick}%
+                </text>
+              ) : null}
             </g>
           );
         })}
 
-        {[0, 0.25, 0.5, 0.75, 1].map((tick) => {
+        {xGridTicks.map((tick) => {
           const x = left + tick * plotWidth;
           const latency = Math.round(maxLatency * tick);
           return (
             <g key={tick}>
-              <line className="scatter-chart__grid" x1={x} x2={x} y1={top} y2={top + plotHeight} />
-              <text className="scatter-chart__tick" x={x} y={top + plotHeight + 24}>
-                {latency} ms
-              </text>
+              <line
+                className={xLabelTicks.has(tick) ? "scatter-chart__grid scatter-chart__grid--major" : "scatter-chart__grid"}
+                x1={x}
+                x2={x}
+                y1={top}
+                y2={top + plotHeight}
+              />
+              {xLabelTicks.has(tick) ? (
+                <text className="scatter-chart__tick" x={x} y={top + plotHeight + 24}>
+                  {latency} ms
+                </text>
+              ) : null}
             </g>
           );
         })}
@@ -135,22 +162,52 @@ function AccuracyLatencyChart({ summaries }: { summaries: RunSummary[] }) {
         <line className="scatter-chart__axis" x1={left} x2={left} y1={top} y2={top + plotHeight} />
         <line className="scatter-chart__axis" x1={left} x2={left + plotWidth} y1={top + plotHeight} y2={top + plotHeight} />
 
-        <text className="scatter-chart__axis-label" x={left + plotWidth / 2} y={height - 6}>
+        <text className="scatter-chart__axis-label" x={left + plotWidth / 2} y={height - 10}>
           Average latency
         </text>
-        <text className="scatter-chart__axis-label scatter-chart__axis-label--y" x={14} y={top + plotHeight / 2}>
+        <text className="scatter-chart__axis-label scatter-chart__axis-label--y" x={18} y={top + plotHeight / 2}>
           Accuracy
         </text>
 
         {points.map(({ row, x, y, color }) => (
-          <g key={row.modelId}>
-            <circle className="scatter-chart__point" cx={x} cy={y} r="4.5" fill={color} />
-            <title>
-              {row.modelId}: {row.accuracy.toFixed(1)}%, {Math.round(row.averageLatencyMs)} ms average, {row.totalPrompts} prompts
-            </title>
+          <g
+            key={row.modelId}
+            className="scatter-chart__point-hitbox"
+            tabIndex={0}
+            role="button"
+            aria-label={`${row.modelId}: ${row.accuracy.toFixed(1)}% accuracy, ${Math.round(row.averageLatencyMs)} ms average latency`}
+            onMouseEnter={() => setActiveModelId(row.modelId)}
+            onMouseLeave={() => setActiveModelId((current) => (current === row.modelId ? null : current))}
+            onFocus={() => setActiveModelId(row.modelId)}
+            onBlur={() => setActiveModelId((current) => (current === row.modelId ? null : current))}
+          >
+            <circle className="scatter-chart__point-target" cx={x} cy={y} r="12" />
+            <circle
+              className={activeModelId === row.modelId ? "scatter-chart__point scatter-chart__point--active" : "scatter-chart__point"}
+              cx={x}
+              cy={y}
+              r="4.5"
+              fill={color}
+            />
           </g>
         ))}
       </svg>
+        {activePoint ? (
+          <div
+            className={tooltipBelow ? "scatter-chart__tooltip scatter-chart__tooltip--below" : "scatter-chart__tooltip"}
+            style={{
+              left: `${tooltipLeft}%`,
+              top: `${tooltipTop}%`
+            }}
+          >
+            <strong>{activePoint.row.modelId}</strong>
+            <span>
+              {activePoint.row.accuracy.toFixed(1)}% accuracy · {Math.round(activePoint.row.averageLatencyMs)} ms avg ·{" "}
+              {activePoint.row.totalPrompts} prompts
+            </span>
+          </div>
+        ) : null}
+      </div>
 
       <div className="scatter-chart__legend">
         {points.map(({ row, color }) => (
@@ -211,4 +268,8 @@ function chartColor(index: number): string {
 
 function shortLabel(value: string): string {
   return value.length > 22 ? `${value.slice(0, 19)}...` : value;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
 }

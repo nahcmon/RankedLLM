@@ -61,6 +61,69 @@ History also includes comparison charts across models for accuracy, average late
 
 The Dashboard shows a static preview of selected benchmark prompts before a run and a live preview of the currently executing prompt during a run.
 
+## Official SWE-bench and SWE-bench Pro
+
+The Dashboard includes an Official SWE-bench panel for the full upstream suites:
+
+- [SWE-bench](https://github.com/swe-bench/SWE-bench)
+- [SWE-bench Pro](https://github.com/scaleapi/SWE-bench_Pro-os)
+
+This path is separate from the local JSONL benchmark cards. It has two stages:
+
+1. Generate official-format prediction artifacts through your configured provider.
+2. Optionally launch the official upstream evaluator.
+
+Prediction generation supports:
+
+- Hugging Face datasets through Python `datasets.load_dataset`
+- Local JSON, JSONL, or CSV exports
+- Optional full-run mode by leaving Limit blank
+- Optional narrowed runs by comma-separated instance IDs
+
+Artifacts are written under `official-runs/` by default:
+
+- SWE-bench predictions: JSONL rows with `instance_id`, `model_name_or_path`, and `model_patch`
+- SWE-bench Pro predictions: JSON array rows with `instance_id`, `patch`, and `prefix`
+
+Official evaluation is disabled by default because it runs upstream Docker-based repository tests and can require substantial disk, CPU, and RAM. To enable the evaluation buttons:
+
+```bash
+RANKEDLLM_ENABLE_OFFICIAL_SWEBENCH=1 npm run dev
+```
+
+SWE-bench evaluation also requires the upstream Python package/harness and Docker. A typical setup is:
+
+```bash
+git clone https://github.com/swe-bench/SWE-bench.git
+cd SWE-bench
+pip install -e .
+```
+
+RankedLLM launches:
+
+```bash
+python -m swebench.harness.run_evaluation \
+  --dataset_name princeton-nlp/SWE-bench \
+  --split test \
+  --predictions_path <predictions.jsonl> \
+  --max_workers <workers> \
+  --run_id <run_id>
+```
+
+SWE-bench Pro evaluation requires the `scaleapi/SWE-bench_Pro-os` repository, its Python requirements, Docker or Modal-compatible setup, the raw sample CSV, and the repo's `run_scripts` directory. RankedLLM launches:
+
+```bash
+python swe_bench_pro_eval.py \
+  --raw_sample_path=<swe_bench_pro_full.csv> \
+  --patch_path=<predictions.json> \
+  --output_dir=<output_directory> \
+  --scripts_dir=<run_scripts> \
+  --num_workers=<workers> \
+  --dockerhub_username=jefzda
+```
+
+The app only generates patches by calling your configured provider URL. It does not include an agent scaffold, repository-editing loop, built-in model, judge model, or cloud API dependency. An official score should be claimed only from completed upstream evaluator output.
+
 ## Benchmarks
 
 Seed files live in `benchmarks/`:
@@ -106,6 +169,7 @@ References used for adapter design:
 - [GPQA repository](https://github.com/idavidrein/gpqa)
 - [SWE-bench repository](https://github.com/swe-bench/SWE-bench)
 - [SWE-bench datasets guide](https://www.swebench.com/SWE-bench/guides/datasets/)
+- [SWE-bench Pro repository](https://github.com/scaleapi/SWE-bench_Pro-os)
 - [LiveCodeBench repository](https://github.com/LiveCodeBench/LiveCodeBench)
 - [IFEval code and data](https://github.com/google-research/google-research/tree/master/instruction_following_eval)
 
@@ -203,6 +267,10 @@ The SWE-bench-style bundled file is a local repair subset. A real SWE-bench or S
 - `GET /api/benchmarks`
 - `GET /api/benchmarks/items`
 - `POST /api/benchmarks/import`
+- `GET /api/official-suites`
+- `POST /api/official-suites/prediction-runs`
+- `POST /api/official-suites/evaluation-runs`
+- `GET /api/official-suites/runs/:runId/events`
 - `POST /api/runs`
 - `GET /api/runs`
 - `GET /api/runs/:runId/events`
@@ -214,7 +282,7 @@ The SWE-bench-style bundled file is a local repair subset. A real SWE-bench or S
 npm test
 ```
 
-The test suite covers answer normalization, CSV read/write and repair, benchmark loading, official-format import adapters, code execution fail-closed behavior, result aggregation, preferred model selection, and a mocked LM Studio run.
+The test suite covers answer normalization, CSV read/write and repair, benchmark loading, official-format import adapters, official SWE-bench artifact plumbing, code execution fail-closed behavior, result aggregation, preferred model selection, and a mocked LM Studio run.
 
 ## Limitations
 
@@ -222,5 +290,6 @@ The test suite covers answer normalization, CSV read/write and repair, benchmark
 - The app does not use another LLM as a judge.
 - The app has no built-in AI functionality. Provider calls happen only for selected benchmark prompts.
 - Code generation benchmarks require explicit server and UI opt-in and Docker.
+- Full SWE-bench/SWE-bench Pro evaluation requires upstream Python dependencies, Docker resources, and official datasets outside the Node app.
 - Results are stored in one local CSV file, not a database.
 - Token usage and throughput are not reported because many local OpenAI-compatible servers omit usage metadata.

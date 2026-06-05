@@ -10,7 +10,16 @@ import { LmStudioClient, recommendModel } from "./lmStudioClient.js";
 import { buildUserPrompt } from "./prompting.js";
 import { RunManager } from "./runManager.js";
 import { importBenchmarkFile } from "./officialImporters.js";
-import type { BenchmarkImportRequest, BenchmarkItem, PromptPreview, RunOptions, RunRequest } from "./types.js";
+import { OfficialSwebenchManager } from "./swebenchIntegration.js";
+import type {
+  BenchmarkImportRequest,
+  BenchmarkItem,
+  OfficialEvaluationRunRequest,
+  OfficialPredictionRunRequest,
+  PromptPreview,
+  RunOptions,
+  RunRequest
+} from "./types.js";
 
 export interface CreateAppOptions {
   projectRoot?: string;
@@ -21,6 +30,7 @@ export interface AppServices {
   csvStore: CsvStore;
   lmStudioClient: LmStudioClient;
   runManager: RunManager;
+  officialSwebenchManager: OfficialSwebenchManager;
 }
 
 export interface CreatedApp {
@@ -36,6 +46,7 @@ export async function createApp(options: CreateAppOptions = {}): Promise<Created
   let loadedBenchmarks = await loadBenchmarks(benchmarksDir);
   const lmStudioClient = new LmStudioClient(options.fetchImpl);
   const codeExecutor = new CodeBenchmarkExecutor();
+  const officialSwebenchManager = new OfficialSwebenchManager(projectRoot, lmStudioClient);
   let runManager = createRunManager(csvStore, lmStudioClient, loadedBenchmarks, codeExecutor);
 
   const app = express();
@@ -50,7 +61,8 @@ export async function createApp(options: CreateAppOptions = {}): Promise<Created
       resultsCsvRows: csvStore.getRows().length,
       csvRepaired: csvStatus.repaired,
       csvBackupPath: csvStatus.backupPath,
-      codeBenchmarksEnabled: codeExecutor.isEnabled()
+      codeBenchmarksEnabled: codeExecutor.isEnabled(),
+      officialSwebenchEvaluationEnabled: officialSwebenchManager.isEvaluationEnabled()
     });
   });
 
@@ -93,6 +105,13 @@ export async function createApp(options: CreateAppOptions = {}): Promise<Created
     response.json({ benchmarks: loadedBenchmarks.definitions });
   });
 
+  app.get("/api/official-suites", (_request, response) => {
+    response.json({
+      suites: officialSwebenchManager.getSuites(),
+      officialSwebenchEvaluationEnabled: officialSwebenchManager.isEvaluationEnabled()
+    });
+  });
+
   app.get("/api/benchmarks/items", (request, response) => {
     const ids = String(request.query.ids ?? "")
       .split(",")
@@ -116,6 +135,61 @@ export async function createApp(options: CreateAppOptions = {}): Promise<Created
     } catch (error) {
       response.status(400).json({ message: error instanceof Error ? error.message : String(error) });
     }
+  });
+
+  app.post("/api/official-suites/prediction-runs", (request, response) => {
+    const body = request.body as Partial<OfficialPredictionRunRequest>;
+    const validationError = validateOfficialPredictionRunRequest(body);
+    if (validationError) {
+      response.status(400).json({ message: validationError });
+      return;
+    }
+
+    const runId = officialSwebenchManager.startPredictionRun(body as OfficialPredictionRunRequest);
+    response.status(202).json({ runId });
+  });
+
+  app.post("/api/official-suites/evaluation-runs", (request, response) => {
+    const body = request.body as Partial<OfficialEvaluationRunRequest>;
+    const validationError = validateOfficialEvaluationRunRequest(body);
+    if (validationError) {
+      response.status(400).json({ message: validationError });
+      return;
+    }
+    if (!officialSwebenchManager.isEvaluationEnabled()) {
+      response.status(400).json({
+        message:
+          "Official SWE-bench evaluation is disabled. Restart with RANKEDLLM_ENABLE_OFFICIAL_SWEBENCH=1 after Docker and the upstream Python harness are installed."
+      });
+      return;
+    }
+
+    try {
+      const runId = officialSwebenchManager.startEvaluationRun(body as OfficialEvaluationRunRequest);
+      response.status(202).json({ runId });
+    } catch (error) {
+      response.status(400).json({ message: error instanceof Error ? error.message : String(error) });
+    }
+  });
+
+  app.get("/api/official-suites/runs/:runId/events", (request, response) => {
+    const runId = request.params.runId;
+    const progress = officialSwebenchManager.getProgress(runId);
+    if (!progress) {
+      response.status(404).json({ message: "Official run not found" });
+      return;
+    }
+
+    response.setHeader("Content-Type", "text/event-stream");
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Connection", "keep-alive");
+    response.flushHeaders?.();
+
+    const send = (payload: unknown) => {
+      response.write(`data: ${JSON.stringify(payload)}\n\n`);
+    };
+    const unsubscribe = officialSwebenchManager.subscribe(runId, send);
+    request.on("close", unsubscribe);
   });
 
   app.post("/api/runs", (request, response) => {
@@ -174,7 +248,7 @@ export async function createApp(options: CreateAppOptions = {}): Promise<Created
     response.download(csvStore.path, "results.csv");
   });
 
-  return { app, services: { csvStore, lmStudioClient, runManager } };
+  return { app, services: { csvStore, lmStudioClient, runManager, officialSwebenchManager } };
 }
 
 function createRunManager(
@@ -236,6 +310,61 @@ function validateRunRequest(request: Partial<RunRequest>): string | undefined {
   }
   if (options.enableCodeExecution !== undefined && typeof options.enableCodeExecution !== "boolean") {
     return "enableCodeExecution must be a boolean when provided";
+  }
+  return undefined;
+}
+
+function validateOfficialPredictionRunRequest(request: Partial<OfficialPredictionRunRequest>): string | undefined {
+  if (request.suiteId !== "swe_bench" && request.suiteId !== "swe_bench_pro") {
+    return "suiteId must be swe_bench or swe_bench_pro";
+  }
+  if (!request.serverBaseUrl) {
+    return "serverBaseUrl is required";
+  }
+  if (!request.modelId) {
+    return "modelId is required";
+  }
+  if (!request.source) {
+    return "source is required";
+  }
+  if (request.source.type !== "huggingface" && request.source.type !== "inline_file") {
+    return "source.type must be huggingface or inline_file";
+  }
+  if (request.source.type === "inline_file" && !request.source.file) {
+    return "source.file is required for inline_file prediction generation";
+  }
+  if (typeof request.temperature !== "number" || request.temperature < 0) {
+    return "temperature must be a non-negative number";
+  }
+  if (typeof request.timeoutMs !== "number" || !Number.isInteger(request.timeoutMs) || request.timeoutMs < 1000) {
+    return "timeoutMs must be at least 1000";
+  }
+  if (request.maxTokens !== undefined && (!Number.isInteger(request.maxTokens) || request.maxTokens < 1)) {
+    return "maxTokens must be a positive integer when provided";
+  }
+  if (request.limit !== undefined && (!Number.isInteger(request.limit) || request.limit < 1)) {
+    return "limit must be a positive integer when provided";
+  }
+  return undefined;
+}
+
+function validateOfficialEvaluationRunRequest(request: Partial<OfficialEvaluationRunRequest>): string | undefined {
+  if (request.suiteId !== "swe_bench" && request.suiteId !== "swe_bench_pro") {
+    return "suiteId must be swe_bench or swe_bench_pro";
+  }
+  if (!request.predictionsPath) {
+    return "predictionsPath is required";
+  }
+  if (request.maxWorkers !== undefined && (!Number.isInteger(request.maxWorkers) || request.maxWorkers < 1)) {
+    return "maxWorkers must be a positive integer when provided";
+  }
+  if (request.suiteId === "swe_bench_pro") {
+    if (!request.swebenchProRepoPath) {
+      return "swebenchProRepoPath is required for SWE-bench Pro";
+    }
+    if (!request.rawSamplePath) {
+      return "rawSamplePath is required for SWE-bench Pro";
+    }
   }
   return undefined;
 }
